@@ -25,7 +25,7 @@ def welcome():
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
         f"/api/v1.0/2016-08-23<br/>"
-        f"/api/v1.0/2016-08-23/2017-08-23"
+        f"/api/v1.0/2015-08-23/2017-08-23"
     )
 @app.route("/api/v1.0/precipitation")
 # def precipitation():
@@ -82,7 +82,7 @@ def start(start=None, end=None):
     Temp_summary = [func.min(measurement.tobs), 
         func.avg(measurement.tobs), 
         func.max(measurement.tobs)] 
-    Temp = session.query(*Temp_summary).filter(measurement.date >'2016-08-23').all()
+    Temp = session.query(*Temp_summary).filter(measurement.date >='2016-08-23').all()
     session.close()
     Tem= list(np.ravel(Temp))
     return jsonify(Tem)
@@ -94,21 +94,20 @@ def start(start=None, end=None):
 
 
 # @app.route("/api/v1.0/<start>/<end> ")
-@app.route("/api/v1.0/2016-08-23/2017-08-23")
-def start(start=None, end=None):
+@app.route("/api/v1.0/2015-08-23/2017-08-23")
+def start_end(start=None, end=None):
 
 # #Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
     session = Session(engine)
         # Query all stations
-    Temp_summary = [func.min(measurement.tobs), 
+    Temp_summary_1 = [func.min(measurement.tobs), 
         func.avg(measurement.tobs), 
         func.max(measurement.tobs)] 
-    Temp = session.query(*Temp_summary).filter(measurement.date <'2017-08-23').filter(measurement.date >'2016-08-23')all()
+    Temp_1= session.query(*Temp_summary_1).filter(measurement.date <'2017-08-23').filter(measurement.date >='2015-08-23').all()
     session.close()
-    Tem= list(np.ravel(Temp))
-    return jsonify(Tem)
+    Tem_1= list(np.ravel(Temp_1))
+    return jsonify(Tem_1)
 
-# #When given the start only, calculate TMIN, TAVG, and TMAX for all dates greater than and equal to the start date.
 
 
 # 4. Define main behavior

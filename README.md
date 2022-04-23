@@ -88,10 +88,10 @@ Design a Flask API based on the queries that you have just developed.
 
 * `/api/v1.0/tobs`
   * Query the dates and temperature observations of the most active station for the last year of data.
- ![tobs_code](Images/tobs_code)
+ ![tobs_code](Images/tobs_code.png)
 
   * Return a JSON list of temperature observations (TOBS) for the previous year.
- ![tobs_output](Images/tobs_output)
+ ![tobs_output](Images/tobs_output.png)
 
 
 

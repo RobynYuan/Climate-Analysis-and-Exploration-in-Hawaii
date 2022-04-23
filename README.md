@@ -102,9 +102,9 @@ Design a Flask API based on the queries that you have just developed.
   * When given the start only, calculate `TMIN`, `TAVG`, and `TMAX` for all dates greater than and equal to the start date.
 
   * When given the start and the end date, calculate the `TMIN`, `TAVG`, and `TMAX` for dates between the start and end date inclusive.
-![start_end_code](Images/start_end_code)
-![start_end_output](Images/start_output)
-![start_end_output](Images/start_end_output)
+![start_end_code](Images/start_end_code.png)
+![start_end_output](Images/start_output.png)
+![start_end_output](Images/start_end_output.png)
 
 
 ## References

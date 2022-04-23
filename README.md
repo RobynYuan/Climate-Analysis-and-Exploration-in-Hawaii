@@ -1,36 +1,40 @@
-# SQLAlchemy Homework - Surfs Up!
 
-### Before You Begin
-
-1. Create a new repository for this project called `sqlalchemy-challenge`. **Do not add this homework to an existing repository**.
-
-2. Clone the new repository to your computer.
-
-3. Add your Jupyter notebook and `app.py` to this folder. These will be the main scripts to run for analysis.
-
-4. Push the above changes to GitHub or GitLab.
 
 ![surfs-up.png](Images/surfs-up.png)
 
-Congratulations! You've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii! To help with your trip planning, you need to do some climate analysis on the area. The following outlines what you need to do.
+Congratulations! You've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii! To help with your trip planning, you need to do some climate analysis on the area. 
 
 ## Step 1 - Climate Analysis and Exploration
 
-To begin, use Python and SQLAlchemy to do basic climate analysis and data exploration of your climate database. All of the following analysis should be completed using SQLAlchemy ORM queries, Pandas, and Matplotlib.
+To begin, use Python and SQLAlchemy to do basic climate analysis and data exploration of hawaii climate database. All of the following analysis should be completed using SQLAlchemy ORM queries, Pandas, and Matplotlib.
 
-* Use the provided [starter notebook](climate_starter.ipynb) and [hawaii.sqlite](Resources/hawaii.sqlite) files to complete your climate analysis and data exploration.
+* Use SQLAlchemy `create_engine` to connect to the sqlite database.
 
-* Use SQLAlchemy `create_engine` to connect to your sqlite database.
+engine = create_engine("sqlite:///hawaii.sqlite")
 
 * Use SQLAlchemy `automap_base()` to reflect your tables into classes and save a reference to those classes called `Station` and `Measurement`.
 
+
+
+Base = automap_base()
+Base.prepare(engine, reflect=True)
+
+
+measurement = Base.classes.measurement
+station=Base.classes.station
+
 * Link Python to the database by creating an SQLAlchemy session.
+
+session = Session(engine)
+conn=engine.connect()
 
 * **Important** Don't forget to close out your session at the end of your notebook.
 
 ### Precipitation Analysis
 
 * Start by finding the most recent date in the data set.
+
+
 
 * Using this date, retrieve the last 12 months of precipitation data by querying the 12 preceding months of data. **Note** you do not pass in the date as a variable to your query.
 

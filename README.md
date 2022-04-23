@@ -68,8 +68,8 @@ Design a Flask API based on the queries that you have just developed.
 
   * List all routes that are available.
 
-    ![home_code](Images/home_code)
-    ![home_code_output](Images/home_code_output)
+    ![home_code](Images/home_code.png)
+    ![home_code_output](Images/home_code_output.png)
 
 * `/api/v1.0/precipitation`
 
@@ -80,10 +80,10 @@ Design a Flask API based on the queries that you have just developed.
 
 * `/api/v1.0/stations`
 
- ![stations_code](Images/stations_code)
+ ![stations_code](Images/stations_code.png)
   * Return a JSON list of stations from the dataset.
 
-  ![stations](Images/stations)
+  ![stations](Images/stations.png)
 
 
 * `/api/v1.0/tobs`

@@ -1,19 +1,29 @@
 # 1. Import Flask
-from flask import Flask
+
+ 
+import sqlalchemy
+from flask import Flask, jsonify
 import numpy as np
 import datetime as dt
-import sqlalchemy
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import Session, session
+from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
-from flask import Flask, jsonify
+
+# set up database
 engine = create_engine("sqlite:///hawaii.sqlite")
+
+# reflect an existing database into a new model
 Base = automap_base()
+
+# reflect the tables
 Base.prepare(engine, reflect=True)
+
+# Save reference to the table
 measurement = Base.classes.measurement
 station=Base.classes.station
-# 2. Create an app
+# Set up Flask
 app = Flask(__name__)
 # 3. Define static routes
 @app.route("/")
@@ -28,6 +38,8 @@ def welcome():
         f"/api/v1.0/2015-08-23/2017-08-23"
     )
 @app.route("/api/v1.0/precipitation")
+
+
 # def precipitation():
 # #Convert the query results to a dictionary using date as the key and prcp as the value.
 # #Return the JSON representation of your dictionary.

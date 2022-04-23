@@ -1,6 +1,4 @@
 # 1. Import Flask
-
- 
 import sqlalchemy
 from flask import Flask, jsonify
 import numpy as np
@@ -9,9 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
-
-
-# set up database
+ 
+ # set up database
 engine = create_engine("sqlite:///hawaii.sqlite")
 
 # reflect an existing database into a new model
@@ -39,21 +36,18 @@ def welcome():
     )
 @app.route("/api/v1.0/precipitation")
 
-
 # def precipitation():
-# #Convert the query results to a dictionary using date as the key and prcp as the value.
-# #Return the JSON representation of your dictionary.
+
 def precipitation():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of passenger data including the name, age, and sex of each passenger"""
-    # Query all passengers
+   #Return a list of record data including the date and precipetation
     date_prcp= session.query(measurement.date,measurement.prcp).all()
 
     session.close()
 
-    # Create a dictionary from the row data and append to a list of precipitation
+    #Convert the query results to a dictionary using date as the key and prcp as the value.
     precipitation = []
     for date, prcp in date_prcp:
         precipitation_dict = {}
@@ -61,8 +55,10 @@ def precipitation():
         precipitation_dict["prcp"] = prcp
        
         precipitation .append(precipitation_dict)
-
+     #Return the JSON representation of your dictionary.
     return jsonify(precipitation)
+
+
 
 @app.route("/api/v1.0/stations")
 def stations():
@@ -97,13 +93,8 @@ def start(start=None, end=None):
     Temp = session.query(*Temp_summary).filter(measurement.date >='2016-08-23').all()
     session.close()
     Tem= list(np.ravel(Temp))
-    return jsonify(Tem)
-    
-    
-    
-
-
-
+    return jsonify(Tem)    
+   
 
 # @app.route("/api/v1.0/<start>/<end> ")
 @app.route("/api/v1.0/2015-08-23/2017-08-23")
@@ -119,8 +110,6 @@ def start_end(start=None, end=None):
     session.close()
     Tem_1= list(np.ravel(Temp_1))
     return jsonify(Tem_1)
-
-
 
 # 4. Define main behavior
 if __name__ == "__main__":
